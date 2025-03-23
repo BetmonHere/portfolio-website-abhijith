@@ -25,6 +25,7 @@
       font-family: Arial, sans-serif;
       transition: background 0.3s, color 0.3s;
     }
+    
       body.alternate-theme {
     background-color: #1a1a1a;
     color: #f5f5f5;
@@ -142,6 +143,41 @@
       overflow: hidden;
       box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.2);
     }
+    form {
+  margin-top: 15px;
+}
+
+.form-group label {
+  font-weight: bold;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  transition: border 0.3s;
+}
+
+.form-control:focus {
+  border: 1px solid #ff5733;
+  outline: none;
+}
+
+.btn-primary {
+  background-color: #ff5733;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #ff4500;
+}
 </style>
 <body class="">
 <body class="light-mode">
@@ -356,6 +392,39 @@
             <p><i class="fa fa-map-marker"></i> <strong>Address:</strong> Thiruvananthapuram, Kerala</p>
           </div>
         </div>
+        <div class="card">
+          <div class="card-block">
+            <h2>Contact Me</h2>
+            <form id="contact-form" action="https://formspree.io/f/mrbpqjvg" method="POST">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" class="form-control" id="subject" name="subject" placeholder="Enter the subject" required>
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="4" placeholder="Write your message here..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Send Message</button>
+              <p id="form-status" style="display: none; margin-top: 10px; color: green;">Message sent successfully!</p>
+            </form>
+          </div>
+        </div>
+        
+        
         
 
 
@@ -375,6 +444,24 @@
 </footer>
 
 <script>
+  <body class="light-mode">
+
+<!-- Add your content of header -->
+<div class="background-color-layer" style="background-image: url('assets/images/img-01.jpg')"></div>
+<main class="content-wrapper">
+  <header class="white-text-container section-container fade-in">
+    <div class="text-center">
+      <h1>I am Abhijith S P</h1>
+      <p>Cybersecurity Analyst</p>
+    </div>
+  </header>
+</main>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".fade-in").forEach((el) => {
+      el.classList.add("visible");
+    });
+  });
    document.addEventListener("DOMContentLoaded", function () {
       document.querySelectorAll(".fade-in, .slide-in").forEach((el) => {
         el.classList.add("visible");
@@ -384,6 +471,42 @@
     document.body.classList.toggle("alternate-theme");
   });
     });
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("form-status");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent default form submission
+
+      const formData = new FormData(form);
+
+      fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: { "Accept": "application/json" }
+      })
+      .then(response => {
+        if (response.ok) {
+          status.textContent = "Message sent successfully!";
+          status.style.color = "green";
+          status.style.display = "block";
+          form.reset(); // Clear form fields
+        } else {
+          status.textContent = "Oops! Something went wrong.";
+          status.style.color = "red";
+          status.style.display = "block";
+        }
+      })
+      .catch(() => {
+        status.textContent = "Error submitting the form.";
+        status.style.color = "red";
+        status.style.display = "block";
+      });
+    });
+  });
+</script>
+
   </script>
 
 </body>
